@@ -15,8 +15,8 @@ include("../conexion/conexion.php");
          $test=$row[4];
          $time=$row[5];
          $position=$row[6];
-         $points=$row[6];
-         $state=$row[6];
+         $points=$row[7];
+         $state=$row[8];
          }                                                     
     
 ?>
@@ -84,6 +84,11 @@ include("../conexion/conexion.php");
         $("#update-form").hide();
 
       }
+      
+     
+
+
+      
     });
   </script>
 
@@ -135,7 +140,7 @@ include("../conexion/conexion.php");
             </select>
           </div>
           <div class="input-field ">
-            <input type="number" name="time" min="1">
+            <input type="number" step="any" name="time" min="1">
             <label for="time">Tiempo empleado en prueba</label>
           </div>
           <div class="input-field ">
@@ -151,7 +156,7 @@ include("../conexion/conexion.php");
             <label for="state">Estado</label>
             <select class="form-control" name="state">
               <option>NA</option>
-              <option>Descalificado </option>
+              <option>Descalificado</option>
               <option>Activo</option>
               <option>Finalizado</option>
             </select>
@@ -228,62 +233,75 @@ include("../conexion/conexion.php");
     <h5 class="blue-text">EDITAR INFORMACIÓN</h5><br><br>
     <!-- formulario-->
     <form action="control.php" method="POST" accept-charset="utf-8" class="border p-3 form">
-      <div class="input-field ">
-        <input type="text" name="id" value="<?php
-                      echo $id;
-               ?>">
-        <label for="id">Id</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="swimmer" value="<?php
+      
+      
+      
+        <div class="input-field ">
+            <input type="number"  min="1"  name="swimmer" required value="<?php
                       echo $swimmer;
                ?>">
-        <label for="swimmer">Cédula nadador</label>
-      </div>
+            <label for="swimmer">Cédula nadador</label>
+            
+          </div>
 
-      <div class="input-field ">
-        <input type="text" name="date" value="<?php
+          <div class="input-field ">
+            <input type="text" name="date" value="<?php echo $currentDate;
+              ?>" required value="<?php
                       echo $date;
                ?>">
-        <label for="date">Fecha</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="competition" value="<?php
-                      echo $competition;
-               ?>">
-        <label for="competition">Competicion</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="test" value="<?php
-                      echo $test;
-               ?>">
-        <label for="test">Prueba</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="time" value="<?php
+            <label for="date">Fecha</label>
+          </div>
+
+          <div class="form-group">
+            <label for="competition">Competicion</label>
+            <select class="form-control" name="competition">
+              <option <?php if($competition == '1'){echo("selected");}?>>1</option>
+              <option <?php if($competition == '2'){echo("selected");}?>>2</option>
+              <option <?php if($competition == '3'){echo("selected");}?>>3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="test">Prueba</label>
+            <select class="form-control" name="test">
+              <option <?php if($test == '100 Mariposa'){echo("selected");}?>>100 Mariposa</option>
+              <option <?php if($test == '100 Espalda'){echo("selected");}?>>100 Espalda</option>
+              <option <?php if($test == '100 Pecho'){echo("selected");}?>>100 Pecho</option>
+              <option <?php if($test == '100 Libre'){echo("selected");}?>>100 Libre </option>
+              <option <?php if($test == '50 Mariposa'){echo("selected");}?>>50 Mariposa </option>
+              <option <?php if($test == '50 Espalda'){echo("selected");}?>>50 Espalda</option>
+              <option <?php if($test == '50 Pecho'){echo("selected");}?>>50 Pecho</option>
+              <option <?php if($test == '50 Libre'){echo("selected");}?>>50 Libre</option>
+            </select>
+          </div>
+          <div class="input-field ">
+            <input type="number" step="any" name="time" min="1"value="<?php
                       echo $time;
                ?>">
-        <label for="time">Tiempo empleado en prueba</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="position" value="<?php
+            <label for="time" step="any">Tiempo empleado en prueba</label>
+          </div>
+          <div class="input-field ">
+            <input type="number" name="position" value="<?php
                       echo $position;
                ?>">
-        <label for="position">Posición</label>
-      </div>
+            <label for="position">Posición</label>
+          </div>
 
-      <div class="input-field ">
-        <input type="text" name="points" value="<?php
+          <div class="input-field ">
+            <input type="number" name="points"value="<?php
                       echo $points;
                ?>">
-        <label for="points">Puntos</label>
-      </div>
-      <div class="input-field ">
-        <input type="text" name="state" value="<?php
-                      echo $state;
-               ?>">
-        <label for="state">Estado</label>
-      </div>
+            <label for="points">Puntos</label>
+          </div>
+          <div class="form-group">
+            <label for="state">Estado</label>
+            <select class="form-control" name="state">
+              <option <?php if($state == 'NA'){echo("selected");}?>>NA</option>
+              <option <?php if($state == 'Descalificado'){echo("selected");}?>>Descalificado</option>
+              <option <?php if($state == 'Activo'){echo("selected");}?>>Activo</option>
+              <option <?php if($state == 'Finalizado'){echo("selected");}?>>Finalizado</option>
+            </select>
+          </div>
+
 
       <div class="row">
         <div class="col-sm-1 col-xs-1 col-md-1 col-lg-1">

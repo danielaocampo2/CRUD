@@ -32,7 +32,10 @@ while ($row = mysqli_fetch_array($execute)) {
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.js"></script>
     <script src="../librerias/materialize/js/materialize.min.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="../librerias/materialize/css/materialize.min.css" type="text/javascript">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    
+
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -78,6 +81,10 @@ while ($row = mysqli_fetch_array($execute)) {
             if (id == "") {
                 $("#update-form").hide();
             }
+            
+         
+
+            
         });
     </script>
 </head>
@@ -115,8 +122,8 @@ while ($row = mysqli_fetch_array($execute)) {
                     <div class="form-group">
                         <label for="sex">Sexo</label>
                         <select class="form-control" name="sex">
-                            <option>Femenino</option>
-                            <option>Masculino</option>
+                            <option value="F" >Femenino</option>
+                            <option value="M">Masculino</option>
                         </select>
                     </div>
                     <div class="input-field ">
@@ -202,53 +209,57 @@ while ($row = mysqli_fetch_array($execute)) {
             <!-- formulario-->
             <form action="control.php" method="POST" accept-charset="utf-8">
 
-                <div class="input-field ">
-                    <input type="text" name="id" value="<?php
+
+
+<div class="input-field ">
+                        <input type="number" min="1" name="id" required  value="<?php
                                                         echo $id;
                                                         ?>">
-                    <label for="id">Cédula</label>
-                </div>
+                        <label for="id">Cédula</label>
+                    </div>
 
-                <div class="input-field ">
-                    <input type="text" name="name" value="<?php
-                                                            echo  $name;
-                                                            ?>">
-                    <label for="name">Nombres</label>
-                </div>
+                    <div class="input-field ">
+                        <input type="text" name="name" required  value="<?php
+                                                        echo $name;
+                                                        ?>">
+                        <label for="name">Nombres</label>
+                    </div>
 
-                <div class="input-field ">
-                    <input type="text" name="lastname" value="<?php
-                                                                echo  $lastname;
-                                                                ?>">
-                    <label for="lastname">Apellidos</label>
-                </div>
+                    <div class="input-field ">
+                        <input type="text" name="lastname" required  value="<?php
+                                                        echo $lastname;
+                                                        ?>">
+                        <label for="lastname">Apellidos</label>
+                    </div>
 
-                <div class="input-field ">
-                    <input type="text" name="college" value="<?php
-                                                                echo $college;
-                                                                ?>">
-                    <label for="college">Universidad</label>
-                </div>
-                <div class="input-field ">
-                    <input type="text" name="sex" value="<?php
-                                                            echo $sex;
-                                                            ?>">
-                    <label for="sex">Sexo</label>
-                </div>
+                    <div class="input-field ">
+                        <input type="text" name="college" required  value="<?php
+                                                        echo $college;
+                                                        ?>">
+                        <label for="college">Universidad</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex">Sexo</label>
+                        <select class="form-control" name="sex">
+                            <option value="F" <?php if($sex == 'F'){echo("selected");}?>>Femenino</option>
+                            <option value="M" <?php if($sex == 'M'){echo("selected");}?>>Masculino</option>
+                        </select>
+                    </div>
+                    <div class="input-field ">
+                        <input type="number" min="1" name="age" required  value="<?php
+                                                        echo $age;
+                                                        ?>">
+                        <label for="age">Edad</label>
+                    </div>
 
-                <div class="input-field ">
-                    <input type="text" name="age" value="<?php
-                                                            echo $age;
-                                                            ?>">
-                    <label for="age">Edad</label>
-                </div>
+                    <div class="input-field ">
+                        <input type="text" name="eps"  value="<?php
+                                                        echo $eps;
+                                                        ?>">
+                        <label for="eps">EPS</label>
+                    </div>
 
-                <div class="input-field">
-                    <input type="text" name="eps" value="<?php
-                                                            echo $eps;
-                                                            ?>">
-                    <label for="eps">EPS</label>
-                </div>
+             
                 
       <div class="row">
         <div class="btn-space">

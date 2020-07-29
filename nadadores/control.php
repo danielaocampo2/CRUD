@@ -110,12 +110,44 @@ if(count($field)>0){
             $age = $_POST['age'];
             $eps = $_POST['eps'];
 
+     $field= array();
+
+if (strlen($id)>10) {
+      array_push($field,"El campo cédula no puede tener una longitud mayor a 10");
+}
+if (strlen($name)>50 || strlen($lastname)>50 || strlen($college)>50) {
+array_push($field,"El nombre, apellido y universidad puede tener una longitud mayor a 50");
+}
+if (strlen($age)>2 ) {
+      array_push($field,"No acepta nadadores de mas de 99 años ");
+      }
+if ($age<13 ) {
+            array_push($field,"No se aceptan nadadores menores de 13 años");
+            }
+if(count($field)>0){
+      for($i=0; $i< count($field); $i++){
+            echo "<div class='error'>";
+            echo "<li>".$field[$i]."</div>";
+      }
+ }else{
+
             $sql = "UPDATE nadador SET nombres='$name',apellidos='$lastname',universidad='$college',sexo='$sex',edad='$age',eps='$eps' where id='$id'";
             $execute = mysqli_query($conexion, $sql);
 
             if ($execute) {
-                  header("Location:index.php");
+                  echo "<div class='correcto'> ¡Los datos fueron actualizados exitosamente!"; 
             }
+            else{
+
+                  ?> <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                  <script type="text/javascript"> $(document).ready(function () { alert("Error en los datos ingresados"); }); </script><?php
+                  echo (" <div class='mensaje'> Valide las claves primarias");
+                  printf(" <div class='error'> Descripción del error: %s\n", mysqli_error($conexion) );
+                  mysqli_close($conexion);
+                 
+                }
+            
+      }
       }
 /*Elimina registro */
       if (isset($_REQUEST['btn-delete'])) {
